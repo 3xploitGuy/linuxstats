@@ -65,7 +65,7 @@
   "gnetId": 14731,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1626540912717,
+  "iteration": 1633868706184,
   "links": [
     {
       "icon": "question",
@@ -74,7 +74,7 @@
       "title": "GitHub",
       "tooltip": "Open GitHub",
       "type": "link",
-      "url": "https://github.com/3xploitGuy"
+      "url": "https://github.com/3xploitGuy/linuxstats"
     }
   ],
   "panels": [
@@ -616,7 +616,7 @@
       "pluginVersion": "7.3.1",
       "targets": [
         {
-          "expr": "node_network_receive_bytes_total{device=\"wlan0\",instance=~'$node'}",
+          "expr": "node_network_receive_bytes_total{device=\"$network_interface\",instance=~'$node'}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -957,7 +957,7 @@
       "pluginVersion": "7.3.1",
       "targets": [
         {
-          "expr": "node_network_transmit_bytes_total{device=\"wlan0\",instance=~'$node'}",
+          "expr": "node_network_transmit_bytes_total{device=\"$network_interface\",instance=~'$node'}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -1595,6 +1595,29 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "definition": "label_values(node_network_info{operstate=\"up\"}, device)",
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Network:",
+        "multi": false,
+        "name": "network_interface",
+        "options": [],
+        "query": "label_values(node_network_info{operstate=\"up\"}, device)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
@@ -1624,5 +1647,5 @@
   "timezone": "browser",
   "title": "1 Linux Stats with Node Exporter",
   "uid": "linux-stats",
-  "version": 15
+  "version": 3
 }

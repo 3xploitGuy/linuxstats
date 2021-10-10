@@ -1,0 +1,23 @@
+name: Validate Dashboard JSON
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+      - "LICENSE"
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+      - "LICENSE"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Validate JSON
+        run: cat Dashboard.json | json_pp
